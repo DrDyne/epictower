@@ -41,9 +41,13 @@ require('./lib/config/express')(app);
 require('./lib/routes')(app);
 
 // Start server
-app.listen(config.port, function () {
+var server = app.listen(config.port, function () {
   console.log('Express server listening on port %d in %s mode', config.port, app.get('env'));
 });
+
+// WebSockets
+require('./lib/com')(server);
+
 
 // Expose app
 exports = module.exports = app;
